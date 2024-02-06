@@ -5,23 +5,16 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
-import { Product } from "@/models";
+import { productService } from "@/services/product.service";
 import { ProductQuantityForm } from "./ProductQuantityForm";
-
-const product: Product = {
-  id: "1",
-  name: "Produto 1",
-  description: "Descrição do produto",
-  price: 100,
-  image_url: "https://source.unsplash.com/random?product",
-  category_id: "1",
-};
 
 export default async function ProductDetailPage({
   params,
 }: {
   params: { productId: string };
 }) {
+  const product = await productService.getProduct(params.productId);
+
   return (
     <Grid2 container spacing={2}>
       <Grid2
