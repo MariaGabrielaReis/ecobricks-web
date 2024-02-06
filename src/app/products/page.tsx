@@ -14,8 +14,13 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 import { productService } from "@/services/product.service";
 
-export default async function ProductsPage() {
-  const products = await productService.getProducts();
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: { search?: string };
+}) {
+  const search = searchParams.search;
+  const products = await productService.getProducts({ search });
 
   return (
     <Grid2 container spacing={2}>
