@@ -12,28 +12,11 @@ import {
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
-import { Product } from "../../models";
-
-const products: Product[] = [
-  {
-    id: "1",
-    name: "Produto 1",
-    description: "Descrição do produto",
-    price: 100,
-    image_url: "https://source.unsplash.com/random?product",
-    category_id: "1",
-  },
-  {
-    id: "2",
-    name: "Produto 2",
-    description: "Descrição do produto",
-    price: 100,
-    image_url: "https://source.unsplash.com/random?product",
-    category_id: "1",
-  },
-];
+import { productService } from "@/services/product.service";
 
 export default async function ProductsPage() {
+  const products = await productService.getProducts();
+
   return (
     <Grid2 container spacing={2}>
       {products.length === 0 && (
